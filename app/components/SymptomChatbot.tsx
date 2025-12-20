@@ -69,36 +69,36 @@ export default function SymptomChatbot({ onClose }: SymptomChatbotProps) {
     headache: {
       followUp: "Can you describe the type of headache? Is it throbbing, sharp, or dull? Where exactly do you feel it?",
       conditions: [
-        { name: "Tension Headache", probability: 70, description: "Common stress-related headache", severity: "low", recommendedSpecialist: "General Practitioner", urgency: "routine" },
-        { name: "Migraine", probability: 25, description: "Severe headache often with nausea", severity: "medium", recommendedSpecialist: "Neurologist", urgency: "soon" },
-        { name: "Cluster Headache", probability: 5, description: "Severe headache in clusters", severity: "high", recommendedSpecialist: "Neurologist", urgency: "urgent" }
+        { name: "Tension Headache", probability: 70, description: "Common stress-related headache", severity: "low" as const, recommendedSpecialist: "General Practitioner", urgency: "routine" as const },
+        { name: "Migraine", probability: 25, description: "Severe headache often with nausea", severity: "medium" as const, recommendedSpecialist: "Neurologist", urgency: "soon" as const },
+        { name: "Cluster Headache", probability: 5, description: "Severe headache in clusters", severity: "high" as const, recommendedSpecialist: "Neurologist", urgency: "urgent" as const }
       ]
     },
     "chest pain": {
       followUp: "This is important. Can you describe the chest pain? Is it sharp, crushing, or burning? Does it radiate to your arm, neck, or jaw? When did it start?",
       conditions: [
-        { name: "Acid Reflux", probability: 40, description: "Stomach acid causing chest discomfort", severity: "low", recommendedSpecialist: "Gastroenterologist", urgency: "routine" },
-        { name: "Muscle Strain", probability: 30, description: "Chest muscle injury or strain", severity: "low", recommendedSpecialist: "General Practitioner", urgency: "routine" },
-        { name: "Angina", probability: 20, description: "Reduced blood flow to heart", severity: "high", recommendedSpecialist: "Cardiologist", urgency: "urgent" },
-        { name: "Heart Attack", probability: 10, description: "Blocked blood flow to heart", severity: "high", recommendedSpecialist: "Emergency Room", urgency: "urgent" }
+        { name: "Acid Reflux", probability: 40, description: "Stomach acid causing chest discomfort", severity: "low" as const, recommendedSpecialist: "Gastroenterologist", urgency: "routine" as const },
+        { name: "Muscle Strain", probability: 30, description: "Chest muscle injury or strain", severity: "low" as const, recommendedSpecialist: "General Practitioner", urgency: "routine" as const },
+        { name: "Angina", probability: 20, description: "Reduced blood flow to heart", severity: "high" as const, recommendedSpecialist: "Cardiologist", urgency: "urgent" as const },
+        { name: "Heart Attack", probability: 10, description: "Blocked blood flow to heart", severity: "high" as const, recommendedSpecialist: "Emergency Room", urgency: "urgent" as const }
       ]
     },
     "stomach pain": {
       followUp: "Where exactly is the stomach pain? Is it cramping, sharp, or dull? Have you had any nausea, vomiting, or changes in bowel movements?",
       conditions: [
-        { name: "Gastritis", probability: 50, description: "Inflammation of stomach lining", severity: "medium", recommendedSpecialist: "Gastroenterologist", urgency: "soon" },
-        { name: "Food Poisoning", probability: 30, description: "Illness from contaminated food", severity: "medium", recommendedSpecialist: "General Practitioner", urgency: "soon" },
-        { name: "Appendicitis", probability: 15, description: "Inflammation of appendix", severity: "high", recommendedSpecialist: "Emergency Room", urgency: "urgent" },
-        { name: "Ulcer", probability: 5, description: "Sore in stomach lining", severity: "medium", recommendedSpecialist: "Gastroenterologist", urgency: "soon" }
+        { name: "Gastritis", probability: 50, description: "Inflammation of stomach lining", severity: "medium" as const, recommendedSpecialist: "Gastroenterologist", urgency: "soon" as const },
+        { name: "Food Poisoning", probability: 30, description: "Illness from contaminated food", severity: "medium" as const, recommendedSpecialist: "General Practitioner", urgency: "soon" as const },
+        { name: "Appendicitis", probability: 15, description: "Inflammation of appendix", severity: "high" as const, recommendedSpecialist: "Emergency Room", urgency: "urgent" as const },
+        { name: "Ulcer", probability: 5, description: "Sore in stomach lining", severity: "medium" as const, recommendedSpecialist: "Gastroenterologist", urgency: "soon" as const }
       ]
     },
     fatigue: {
       followUp: "How long have you been feeling fatigued? Is it constant or does it come and go? Have you noticed any other symptoms like fever, weight changes, or mood changes?",
       conditions: [
-        { name: "Stress/Overwork", probability: 40, description: "Physical or mental exhaustion", severity: "low", recommendedSpecialist: "General Practitioner", urgency: "routine" },
-        { name: "Anemia", probability: 25, description: "Low red blood cell count", severity: "medium", recommendedSpecialist: "Hematologist", urgency: "soon" },
-        { name: "Thyroid Disorder", probability: 20, description: "Thyroid gland dysfunction", severity: "medium", recommendedSpecialist: "Endocrinologist", urgency: "soon" },
-        { name: "Depression", probability: 15, description: "Mental health condition", severity: "medium", recommendedSpecialist: "Psychiatrist", urgency: "soon" }
+        { name: "Stress/Overwork", probability: 40, description: "Physical or mental exhaustion", severity: "low" as const, recommendedSpecialist: "General Practitioner", urgency: "routine" as const },
+        { name: "Anemia", probability: 25, description: "Low red blood cell count", severity: "medium" as const, recommendedSpecialist: "Hematologist", urgency: "soon" as const },
+        { name: "Thyroid Disorder", probability: 20, description: "Thyroid gland dysfunction", severity: "medium" as const, recommendedSpecialist: "Endocrinologist", urgency: "soon" as const },
+        { name: "Depression", probability: 15, description: "Mental health condition", severity: "medium" as const, recommendedSpecialist: "Psychiatrist", urgency: "soon" as const }
       ]
     }
   };
@@ -114,7 +114,7 @@ export default function SymptomChatbot({ onClose }: SymptomChatbotProps) {
     if (lowerInput.includes('chest pain') && (lowerInput.includes('crushing') || lowerInput.includes('radiating') || lowerInput.includes('arm') || lowerInput.includes('jaw'))) {
       botResponse = "⚠️ URGENT: Based on your symptoms, this could be serious. Please seek immediate medical attention or call emergency services (112). Do not delay medical care.";
       conditions = [
-        { name: "Possible Heart Attack", probability: 80, description: "Requires immediate medical attention", severity: "high", recommendedSpecialist: "Emergency Room", urgency: "urgent" }
+        { name: "Possible Heart Attack", probability: 80, description: "Requires immediate medical attention", severity: "high" as const, recommendedSpecialist: "Emergency Room", urgency: "urgent" as const }
       ];
       showBooking = true;
     }
@@ -148,23 +148,23 @@ export default function SymptomChatbot({ onClose }: SymptomChatbotProps) {
       if (lowerInput.includes('throbbing') || lowerInput.includes('one side')) {
         botResponse = "Based on your description, this sounds like it could be a migraine. Have you experienced any sensitivity to light, sound, or nausea with these headaches?";
         conditions = [
-          { name: "Migraine", probability: 85, description: "Severe headache often with nausea and light sensitivity", severity: "medium", recommendedSpecialist: "Neurologist", urgency: "soon" },
-          { name: "Tension Headache", probability: 15, description: "Common stress-related headache", severity: "low", recommendedSpecialist: "General Practitioner", urgency: "routine" }
+          { name: "Migraine", probability: 85, description: "Severe headache often with nausea and light sensitivity", severity: "medium" as const, recommendedSpecialist: "Neurologist", urgency: "soon" as const },
+          { name: "Tension Headache", probability: 15, description: "Common stress-related headache", severity: "low" as const, recommendedSpecialist: "General Practitioner", urgency: "routine" as const }
         ];
         suggestions = ["Yes, light bothers me", "No, just the pain", "Sometimes nausea", "It affects my daily activities"];
       }
       else if (lowerInput.includes('crushing') || lowerInput.includes('radiating')) {
         botResponse = "⚠️ This description is concerning for a heart condition. I strongly recommend seeking immediate medical attention. Would you like me to help you find the nearest emergency facility or cardiologist?";
         conditions = [
-          { name: "Angina/Heart Attack", probability: 90, description: "Requires immediate medical evaluation", severity: "high", recommendedSpecialist: "Emergency Room", urgency: "urgent" }
+          { name: "Angina/Heart Attack", probability: 90, description: "Requires immediate medical evaluation", severity: "high" as const, recommendedSpecialist: "Emergency Room", urgency: "urgent" as const }
         ];
         showBooking = true;
       }
       else if (lowerInput.includes('lower right') || lowerInput.includes('sharp')) {
         botResponse = "Sharp pain in the lower right abdomen could indicate appendicitis, which requires immediate medical attention. Have you had fever, nausea, or vomiting along with this pain?";
         conditions = [
-          { name: "Appendicitis", probability: 75, description: "Inflammation of appendix requiring surgery", severity: "high", recommendedSpecialist: "Emergency Room", urgency: "urgent" },
-          { name: "Gastritis", probability: 25, description: "Stomach inflammation", severity: "medium", recommendedSpecialist: "Gastroenterologist", urgency: "soon" }
+          { name: "Appendicitis", probability: 75, description: "Inflammation of appendix requiring surgery", severity: "high" as const, recommendedSpecialist: "Emergency Room", urgency: "urgent" as const },
+          { name: "Gastritis", probability: 25, description: "Stomach inflammation", severity: "medium" as const, recommendedSpecialist: "Gastroenterologist", urgency: "soon" as const }
         ];
         showBooking = true;
       }
